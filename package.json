@@ -17,7 +17,8 @@
     "react-dom": "19.2.4",
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.74.0",
-    "react-toastify": "^11.1.0"
+    "react-toastify": "^11.1.0",
+    "surge": "^0.27.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

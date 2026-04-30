@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
-import { authClient } from '@/lib/auth-client';
+import { authClient } from '@/app/lib/auth-client';
 
 export default function MyBorrows() {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
