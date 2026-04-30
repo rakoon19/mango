@@ -20,6 +20,7 @@ const trustedOrigins = process.env.BETTER_AUTH_TRUSTED_ORIGINS
         "https://mango-1n4j93fkk-rahatakondo18-6432s-projects.vercel.app",
         "https://mango-1fancsst2-rahatakondo18-6432s-projects.vercel.app",
         "https://mango-mgjnrbk79-rahatakondo18-6432s-projects.vercel.app",
+        "https://mango-88sz87n67-rahatakondo18-6432s-projects.vercel.app",
         "https://*.vercel.app"
       ];
 

@@ -5,11 +5,20 @@ function isOriginAllowed(origin, trustedOrigins) {
   if (!origin) return false;
   if (trustedOrigins.includes(origin)) return true;
   
-  // Support wildcard *.vercel.app
+  // Support wildcard *.vercel.app and other wildcard patterns
   for (const trusted of trustedOrigins) {
-    if (trusted.endsWith(".vercel.app")) {
-      const baseDomain = trusted.replace("*.", "");
-      if (origin.endsWith(baseDomain) || origin.includes(".vercel.app")) {
+    if (trusted.startsWith("*.")) {
+      // Handle wildcard patterns like *.vercel.app
+      const baseDomain = trusted.slice(2); // Remove "*." prefix
+      // Check if origin ends with the base domain (handles multi-level subdomains)
+      if (origin.endsWith(baseDomain) || origin === baseDomain) {
+        return true;
+      }
+    }
+    // Also check if origin is a subdomain of any trusted origin
+    if (trusted.endsWith(".vercel.app") || trusted.includes(".vercel.app")) {
+      const baseDomain = ".vercel.app";
+      if (origin.endsWith(baseDomain)) {
         return true;
       }
     }
