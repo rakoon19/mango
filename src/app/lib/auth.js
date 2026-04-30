@@ -19,8 +19,9 @@ export const auth = betterAuth({
       console.log("Verification email data:", data);
     },
   },
+  // Update this section:
   trustedOrigins: [
-    "https://mango-rosy.vercel.app",
-    "http://localhost:3000",
+    "https://mango-mzj3nw3u5-rahatakondo18-6432s-projects.vercel.app", // Your Frontend
+    "http://localhost:3000", // For local development
   ],
 });
