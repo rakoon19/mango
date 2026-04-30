@@ -1,36 +1,74 @@
+'use client';
 import Link from "next/link";
+import Image from "next/image";
+import { authClient } from "@/app/lib/auth-client";
 
 const Navbar = () => {
-    return (
-<div className="navbar bg-base-100 shadow-sm">
-  <div className="navbar-start">
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+  const { data: session } = authClient.useSession();
+  const user = session?.user; 
+
+  return (
+    <div className="navbar bg-base-100 shadow-md">
+      <div className="flex-1">
+        <Link href="/" className="btn btn-ghost text-xl font-bold text-orange-600">
+          mango
+        </Link>
       </div>
-      <ul
-        tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/books">All Books</Link></li>
-        <li><Link href="/profile">My Profile</Link></li>
-      </ul>
+
+      <div className="flex-1 flex justify-center lg:block">
+        <ul className="menu menu-horizontal px-1">
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/books">All Books</Link></li>
+          <li><Link href="/profile">My Profile</Link></li>
+          <li><Link href="/borrowed">My Borrowed Books</Link></li>
+        </ul>
+      </div>
+
+      <div className="flex-none gap-2 px-4">
+        {user ? (
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium hidden sm:inline">
+              {user.name}
+            </span>
+            
+            <Link href="/profile">
+              <Image 
+                src={user.image} 
+                alt="profile"
+                width={40}
+                height={40}
+                className="rounded-full border-2 border-orange-500 cursor-pointer hover:border-orange-600 transition"
+              />
+            </Link>
+            
+            <button 
+              className="btn btn-xs btn-outline btn-error"
+              onClick={() => authClient.signOut()}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link href="/login" className="btn btn-primary btn-sm">
+            Login
+          </Link>
+        )}
+      </div>
+
+      <div className="dropdown dropdown-end lg:hidden">
+        <div tabIndex={0} role="button" className="btn btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        </div>
+        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52">
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/books">All Books</Link></li>
+          <li><Link href="/profile">My Profile</Link></li>
+        </ul>
+      </div>
     </div>
-    <Link href="/" className="btn btn-ghost text-xl text-orange-900 font-extrabold"><h1>mango</h1></Link>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/books">All Books</Link></li>
-        <li><Link href="/profile">My Profile</Link></li>
-    </ul>
-  </div>
-  {/* conditional -- if user is logged in then show profile pic and logout button else if user logged out show login button --- login logout --- */}
-  <div className="navbar-end">
-    <Link href="/login" className="btn">Log in</Link>
-  </div>
-</div>
-    );
+  );
 };
 
 export default Navbar;

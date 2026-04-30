@@ -1,17 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'i.pravatar.cc',
+        hostname: '**',
         port: '',
-        pathname: '/300',
-      }
-    ]
-  }
+        pathname: '**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
