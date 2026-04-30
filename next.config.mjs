@@ -18,7 +18,7 @@ async headers() {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "*",
+            value: "https://mango-rosy.vercel.app",
           },
           {
             key: "Access-Control-Allow-Methods",
@@ -31,6 +31,10 @@ async headers() {
           {
             key: "Access-Control-Expose-Headers",
             value: "Content-Type",
+          },
+          {
+            key: "Access-Control-Allow-Credentials",
+            value: "true",
           },
         ],
       },

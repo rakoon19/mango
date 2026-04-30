@@ -31,7 +31,17 @@ async function addCORSHeaders(response, request) {
   const trustedOrigins = auth?.trustedOrigins || [];
   
   const origin = request?.headers?.get("origin");
-  const allowedOrigin = isOriginAllowed(origin, trustedOrigins) ? origin : trustedOrigins[0] || "*";
+  // Always use the specific origin - never use wildcard when credentials are included
+  let allowedOrigin;
+  if (isOriginAllowed(origin, trustedOrigins)) {
+    allowedOrigin = origin; // Return the exact origin from the request
+  } else if (origin && origin.includes(".vercel.app")) {
+    // Allow any vercel.app preview deployment
+    allowedOrigin = origin;
+  } else {
+    // Fallback to first trusted origin or the origin if present
+    allowedOrigin = trustedOrigins[0] || origin || "https://mango-rosy.vercel.app";
+  }
   
   const newHeaders = new Headers(response.headers);
   newHeaders.set("Access-Control-Allow-Origin", allowedOrigin);
@@ -51,7 +61,16 @@ export const OPTIONS = async (request) => {
   const trustedOrigins = auth?.trustedOrigins || [];
   
   const origin = request?.headers?.get("origin");
-  const allowedOrigin = isOriginAllowed(origin, trustedOrigins) ? origin : "*";
+  // Never use wildcard when credentials are included - always use specific origin
+  let allowedOrigin;
+  if (isOriginAllowed(origin, trustedOrigins)) {
+    allowedOrigin = origin;
+  } else if (origin && origin.includes(".vercel.app")) {
+    // Allow any vercel.app preview deployment
+    allowedOrigin = origin;
+  } else {
+    allowedOrigin = trustedOrigins[0] || origin || "https://mango-rosy.vercel.app";
+  }
   
   return new Response(null, {
     status: 204,
