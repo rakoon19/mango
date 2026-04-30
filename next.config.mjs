@@ -11,14 +11,14 @@ const nextConfig = {
       },
     ],
   },
-  async headers() {
+async headers() {
     return [
       {
         source: "/api/auth/:path*",
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "http://localhost:3000",
+            value: "*",
           },
           {
             key: "Access-Control-Allow-Methods",
@@ -29,8 +29,8 @@ const nextConfig = {
             value: "Content-Type, Authorization",
           },
           {
-            key: "Access-Control-Allow-Credentials",
-            value: "true",
+            key: "Access-Control-Expose-Headers",
+            value: "Content-Type",
           },
         ],
       },

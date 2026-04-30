@@ -1,18 +1,10 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
-import { useState, useEffect } from 'react';
 import Marquee from "react-fast-marquee";
 import BOOKS_DATA from '../data/BOOKS_DATA.json';
 
 const Marq = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const featuredBooks = BOOKS_DATA.filter(book => book.featured);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  if (!isLoaded) return <div className="h-12 bg-orange-600 w-full"></div>;
 
   return (
     <div className="w-full bg-orange-600 py-3 overflow-hidden shadow-sm">

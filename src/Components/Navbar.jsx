@@ -1,11 +1,25 @@
 'use client';
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { authClient } from "@/app/lib/auth-client";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
-  const user = session?.user; 
+  const user = session?.user;
+  const [imgError, setImgError] = useState(false);
+
+  const handleImageError = () => {
+    setImgError(true);
+  };
+
+  const getImageSrc = () => {
+    if (imgError || !user?.image) {
+      const initial = user?.name?.charAt(0) || "U";
+      return `https://via.placeholder.com/150?text=${encodeURIComponent(initial)}`;
+    }
+    return user.image;
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-md">
@@ -31,12 +45,13 @@ const Navbar = () => {
               {user.name}
             </span>
             
-            <Link href="/profile">
+<Link href="/profile">
               <Image 
-                src={user.image} 
+                src={getImageSrc()}
                 alt="profile"
                 width={40}
                 height={40}
+                onError={handleImageError}
                 className="rounded-full border-2 border-orange-500 cursor-pointer hover:border-orange-600 transition"
               />
             </Link>

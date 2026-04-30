@@ -1,23 +1,25 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { authClient } from '@/app/lib/auth-client';
 import { toast } from 'react-toastify';
 
 export default function UpdateProfile() {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const { data: session, isPending } = authClient.useSession();
 
-  useEffect(() => {
-    if (!isPending && !session) window.location.href = '/login';
+useEffect(() => {
+    if (!isPending && !session) router.push('/login');
     else if (session) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setName(session.user.name || '');
       setImage(session.user.image || '');
     }
-  }, [session, isPending]);
+  }, [session, isPending, router]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ export default function UpdateProfile() {
     try {
       await authClient.updateUser({ name, image });
       toast.success('Profile updated!');
-      window.location.href = '/profile';
+      router.push('/profile');
     } catch {
       toast.error('Update failed');
     } finally {

@@ -1,19 +1,21 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { authClient } from '@/app/lib/auth-client';
 
 export default function MyBorrows() {
+  const router = useRouter();
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const { data: session, isPending } = authClient.useSession();
 
   useEffect(() => {
     if (!isPending && !session) {
-      window.location.href = '/login';
+      router.push('/login');
     }
-  }, [session, isPending]);
+  }, [session, isPending, router]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('my_borrows') || '[]');

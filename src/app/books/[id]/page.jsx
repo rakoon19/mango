@@ -11,20 +11,23 @@ export default function BookDetails() {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
 
+  const book = BOOKS_DATA.find((b) => b.id === parseInt(id));
 
-  const handleBorrow = () => {
-  const existingBorrows = JSON.parse(localStorage.getItem('my_borrows') || '[]');
-  const isAlreadyBorrowed = existingBorrows.find(b => b.id === book.id);
+  const handleBorrow = (bookToBorrow) => {
+    if (!bookToBorrow) return;
+    
+    const existingBorrows = JSON.parse(localStorage.getItem('my_borrows') || '[]');
+    const isAlreadyBorrowed = existingBorrows.find(b => b.id === bookToBorrow.id);
   
-  if (isAlreadyBorrowed) {
-    return toast.warning("You have already borrowed this book!");
-  }
+    if (isAlreadyBorrowed) {
+      return toast.warning("You have already borrowed this book!");
+    }
 
     const updatedBorrows = [...existingBorrows, { 
-      id: book.id,
-      title: book.title,
-      image_url: book.image_url,
-      author: book.author,
+      id: bookToBorrow.id,
+      title: bookToBorrow.title,
+      image_url: bookToBorrow.image_url,
+      author: bookToBorrow.author,
       borrowedAt: new Date().toLocaleDateString() 
     }];
     
@@ -46,11 +49,9 @@ export default function BookDetails() {
     );
   }
 
-  if (!session) {
+if (!session) {
     return null;
   }
-
-  const book = BOOKS_DATA.find((b) => b.id === parseInt(id));
 
   if (!book) {
     router.push('/404');
@@ -117,10 +118,10 @@ export default function BookDetails() {
                 </p>
               </div>
 
-              <button className="bg-gray-900 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-600 transition-all transform hover:-translate-y-1 shadow-lg active:scale-95"
+<button className="bg-gray-900 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-600 transition-all transform hover:-translate-y-1 shadow-lg active:scale-95"
                 onClick={() => {
                   toast.success("Book borrowed! Check your profile for details.");
-                  handleBorrow();
+                  handleBorrow(book);
                 }}>
                 Borrow Now
               </button>

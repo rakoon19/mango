@@ -1,13 +1,10 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
 import BOOKS_DATA from '../data/BOOKS_DATA.json'; 
 import BookCard from './BookCard';
 
 export default function FeaturedBooks() {
-  const [featuredBooks] = useState(
-    BOOKS_DATA.filter(book => book.featured).slice(0, 6)
-  );
+  const featuredBooks = BOOKS_DATA.filter(book => book.featured).slice(0, 6);
 
   return (
     <section className="py-16 bg-white px-6 lg:px-20">

@@ -1,15 +1,17 @@
 'use client';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import BOOKS_DATA from '../../data/BOOKS_DATA.json';
 import BookCard from '../../Components/BookCard';
 
 export default function AllBooksPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredBooks = BOOKS_DATA.filter((book) =>
-    book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    book.author.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+const filteredBooks = useMemo(() => {
+    return BOOKS_DATA.filter((book) =>
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery]);
 
   return (
     <main className="min-h-screen bg-gray-50 py-12 px-6 lg:px-20">

@@ -1,3 +1,6 @@
+import dns from 'node:dns';
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { username } from "better-auth/plugins";
@@ -18,9 +21,11 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  trustedOrigins: [
-    "https://mango-rosy.vercel.app",
-    "https://mango-mzj3nw3u5-rahatakondo18-6432s-projects.vercel.app",
-    "http://localhost:3000",
-  ],
+trustedOrigins: process.env.BETTER_AUTH_TRUSTED_ORIGINS
+  ? process.env.BETTER_AUTH_TRUSTED_ORIGINS.split(',')
+  : [
+      "http://localhost:3000",
+      "https://mango-rosy.vercel.app",
+      "https://mango-mzj3nw3u5-rahatakondo18-6432s-projects.vercel.app"
+    ],
 });
