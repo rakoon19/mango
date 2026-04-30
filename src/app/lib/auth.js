@@ -18,7 +18,9 @@ const trustedOrigins = process.env.BETTER_AUTH_TRUSTED_ORIGINS
         "http://localhost:3000",
         "https://mango-rosy.vercel.app",
         "https://mango-1n4j93fkk-rahatakondo18-6432s-projects.vercel.app",
-        "https://mango-1fancsst2-rahatakondo18-6432s-projects.vercel.app"
+        "https://mango-1fancsst2-rahatakondo18-6432s-projects.vercel.app",
+        "https://mango-mgjnrbk79-rahatakondo18-6432s-projects.vercel.app",
+        "https://*.vercel.app"
       ];
 
   return betterAuth({
