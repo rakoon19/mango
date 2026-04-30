@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
-import { authClient } from '@/app/lib/auth-client';
+import { authClient } from '@/lib/auth-client';
 
 export default function MyBorrows() {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
@@ -16,7 +17,6 @@ export default function MyBorrows() {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('my_borrows') || '[]');
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setBorrowedBooks(data);
   }, []);
 
@@ -52,12 +52,7 @@ export default function MyBorrows() {
         {borrowedBooks.map((book) => (
           <div key={book.id} className="bg-white border rounded-2xl p-4 flex items-center gap-6 shadow-sm">
             <div className="relative w-20 h-28 shrink-0">
-              <Image 
-                src={book.image_url} 
-                alt={book.title} 
-                fill 
-                className="object-cover rounded-lg" 
-              />
+              <Image src={book.image_url} alt={book.title} fill className="object-cover rounded-lg" />
             </div>
             <div className="grow">
               <h3 className="text-xl font-bold">{book.title}</h3>
