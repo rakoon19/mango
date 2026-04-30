@@ -12,9 +12,13 @@ async function createAuthInstance() {
 
   const baseURL = process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BETTER_AUTH_URL;
   
-  const trustedOrigins = process.env.BETTER_AUTH_TRUSTED_ORIGINS
+const trustedOrigins = process.env.BETTER_AUTH_TRUSTED_ORIGINS
     ? process.env.BETTER_AUTH_TRUSTED_ORIGINS.split(',')
-    : ["http://localhost:3000"];
+    : [
+        "http://localhost:3000",
+        "https://mango-rosy.vercel.app",
+        "https://mango-1n4j93fkk-rahatakondo18-6432s-projects.vercel.app"
+      ];
 
   return betterAuth({
     baseURL,
