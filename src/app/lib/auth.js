@@ -19,4 +19,8 @@ export const auth = betterAuth({
       console.log("Verification email data:", data);
     },
   },
+  trustedOrigins: [
+    "https://mango-rosy.vercel.app",
+    "http://localhost:3000",
+  ],
 });
