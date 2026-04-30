@@ -1,7 +1,6 @@
 'use client';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect } from 'react';
 import { authClient } from '@/app/lib/auth-client';
 import BOOKS_DATA from '../../../data/BOOKS_DATA.json';
