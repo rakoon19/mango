@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import BOOKS_DATA from '../../data/BOOKS_DATA.json';
-import BookCard from '@/components/BookCard';
+import BookCard from '../../Components/BookCard';
 
 export default function AllBooksPage() {
   const [searchQuery, setSearchQuery] = useState('');
