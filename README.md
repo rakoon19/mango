@@ -2,7 +2,7 @@ git clone https://github.com/rakoon19# MANGO - Online Book Library
 
 **MANGO** is a modern, full-stack web application designed for book enthusiasts to explore, discover, and manage their reading collections. It provides a seamless interface for browsing a curated selection of books and managing a personal "borrowed" list using localized state.
 
-**Live URL:** [[https://mango-app.vercel.app](https://mango-app.vercel.app](https://mango-rosy.vercel.app/)) 
+**Live URL:** https://mango-rosy.vercel.app/
 
 ---
 
