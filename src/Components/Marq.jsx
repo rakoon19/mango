@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import Marquee from "react-fast-marquee";
 import BOOKS_DATA from '../data/BOOKS_DATA.json';

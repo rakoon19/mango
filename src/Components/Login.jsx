@@ -41,32 +41,57 @@ const Login = () => {
                     <legend className="fieldset-legend font-extrabold text-2xl text-orange-600 px-2">Login</legend>
 
                     <div className="form-control w-full">
-                        <label className="label"><span className="label-text font-semibold">Email Address</span></label>
-                        <input {...register("email", { required: true })} type="email" placeholder="example@mail.com" 
-                        className={`input input-bordered w-full focus:border-orange-500 ${errors.email ? 'border-red-500' : ''}`} />
+                        <label className="label">
+                          <span className="label-text font-semibold">Email Address</span>
+                        </label>
+                        <input 
+                          {...register("email", { required: true })} 
+                          type="email" 
+                          placeholder="example@mail.com" 
+                          className={`input input-bordered w-full focus:border-orange-500 ${errors.email ? 'border-red-500' : ''}`} 
+                        />
                     </div>
 
                     <div className="form-control w-full mt-2">
-                        <label className="label"><span className="label-text font-semibold">Password</span></label>
-                        <input {...register("password", { required: true })} 
-                        type={showPass ? "text" : "password"} placeholder="Enter Password" 
-                        className={`input input-bordered w-full focus:border-orange-500 ${errors.password ? 'border-red-500' : ''}`} />
+                        <label className="label">
+                          <span className="label-text font-semibold">Password</span>
+                        </label>
+                        <input 
+                          {...register("password", { required: true })} 
+                          type={showPass ? "text" : "password"} 
+                          placeholder="Enter Password" 
+                          className={`input input-bordered w-full focus:border-orange-500 ${errors.password ? 'border-red-500' : ''}`} 
+                        />
                     </div>
 
                     <div className="flex items-center gap-2 mt-3 ml-1">
-                        <input type="checkbox" className="checkbox checkbox-xs checkbox-warning" 
-                        onChange={() => setShowPass(!showPass)} />
-                        <span className="text-xs text-gray-600 font-medium cursor-pointer" onClick={() => setShowPass(!showPass)}>Show Password</span>
+                        <input 
+                          type="checkbox" 
+                          className="checkbox checkbox-xs checkbox-warning" 
+                          onChange={() => setShowPass(!showPass)} 
+                        />
+                        <span 
+                          className="text-xs text-gray-600 font-medium cursor-pointer" 
+                          onClick={() => setShowPass(!showPass)}
+                        >
+                          Show Password
+                        </span>
                     </div>
 
-                    <button type="submit" className="btn bg-orange-600 hover:bg-orange-700 text-white w-full mt-6 border-none" disabled={loading}>
+                    <button 
+                      type="submit" 
+                      className="btn bg-orange-600 hover:bg-orange-700 text-white w-full mt-6 border-none" 
+                      disabled={loading}
+                    >
                         {loading ? <span className="loading loading-spinner loading-md" /> : 'Login'}
                     </button>
 
                     <div className="mt-4 text-center">
                         <p className="text-xs text-gray-500">
-                            Don&#39;t have an account? 
-                            <Link href="/register" className="ml-1 text-orange-600 font-bold hover:underline">Register</Link>
+                            Don&apos;t have an account? 
+                            <Link href="/register" className="ml-1 text-orange-600 font-bold hover:underline">
+                              Register
+                            </Link>
                         </p>
                     </div>
                 </fieldset>

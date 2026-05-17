@@ -26,15 +26,15 @@ export default function RootLayout({ children }) {
       lang="en"
       data-theme="light"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-white`}
-    > 
-    <body>
-      <Navbar></Navbar>
-      <main className='bg-white'>
-        {children}
-      </main>
-      <Footer></Footer>
-      <ToastContainer position="bottom-left" />
-    </body>
+    >
+      <body>
+        <Navbar />
+        <main className="bg-white">
+          {children}
+        </main>
+        <Footer />
+        <ToastContainer position="bottom-left" />
+      </body>
     </html>
   );
 }

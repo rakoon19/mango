@@ -13,9 +13,9 @@ export default function UpdateProfile() {
   const { data: session, isPending } = authClient.useSession();
 
 useEffect(() => {
-    if (!isPending && !session) router.push('/login');
-    else if (session) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (!isPending && !session) {
+      router.push('/login');
+    } else if (session) {
       setName(session.user.name || '');
       setImage(session.user.image || '');
     }
@@ -28,7 +28,7 @@ useEffect(() => {
       await authClient.updateUser({ name, image });
       toast.success('Profile updated!');
       router.push('/profile');
-    } catch {
+    } catch (error) {
       toast.error('Update failed');
     } finally {
       setLoading(false);
@@ -74,7 +74,9 @@ useEffect(() => {
             {loading ? 'Updating...' : 'Update Info'}
           </button>
         </form>
-        <Link href="/profile" className="block w-full mt-4 text-center text-gray-600 hover:text-gray-900">Cancel</Link>
+        <Link href="/profile" className="block w-full mt-4 text-center text-gray-600 hover:text-gray-900">
+          Cancel
+        </Link>
       </div>
     </div>
   );

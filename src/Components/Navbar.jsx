@@ -44,8 +44,8 @@ const Navbar = () => {
             <span className="text-sm font-medium hidden sm:inline">
               {user.name}
             </span>
-            
-<Link href="/profile">
+
+            <Link href="/profile">
               <Image 
                 src={getImageSrc()}
                 alt="profile"
@@ -55,8 +55,8 @@ const Navbar = () => {
                 className="rounded-full border-2 border-orange-500 cursor-pointer hover:border-orange-600 transition"
               />
             </Link>
-            
-            <button 
+
+            <button
               className="btn btn-xs btn-outline btn-error"
               onClick={() => authClient.signOut()}
             >
