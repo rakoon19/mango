@@ -1,4 +1,4 @@
-git clone https://github.com/rakoon19# MANGO - Online Book Library
+git clone [https://github.com/rakoon19#](https://github.com/rakoon19/mango.git) MANGO - Online Book Library
 
 **MANGO** is a modern, full-stack web application designed for book enthusiasts to explore, discover, and manage their reading collections. It provides a seamless interface for browsing a curated selection of books and managing a personal "borrowed" list using localized state.
 
